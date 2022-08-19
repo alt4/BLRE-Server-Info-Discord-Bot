@@ -133,7 +133,7 @@ class Server:
                 return errors
 
             player = Player.LoadFromJson(data) 
-            result = self.PlayerLoadouts.RegisterPlayer(discordId, player)
+            result = self.PlayerLoadouts.RegisterPlayer(discordId, player, self.Options.AllowAdvancedLoadouts)
             if(result == ''):
                 self.PlayerLoadouts.SaveLoadouts('loadouts.json')
                 return 'Loadout set successfully!'

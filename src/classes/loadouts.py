@@ -173,7 +173,7 @@ class PlayerLoadouts:
         if(type(weapon.Camo) is not int): errors += 'Camo should be an integer!\n'
         return errors
 
-    def GetLoadoutErrors(loadout: Loadout):
+    def GetLoadoutErrors(loadout: Loadout, allowAdvancedLoadouts):
         errors = ""
         errors += PlayerLoadouts.GetWeaponErrors(loadout.Primary)
         errors += PlayerLoadouts.GetWeaponErrors(loadout.Secondary)
@@ -189,6 +189,9 @@ class PlayerLoadouts:
         if(type(loadout.IsFemale) is not bool): errors += 'IsFemale should be a boolean!\n'
         if(type(loadout.Skin) is not int): errors += 'Skin should be an integer!\n'
         if(type(loadout.Trophy) is not int): errors += 'Trophy should be an integer!\n'
+
+        if not allowAdvancedLoadouts:
+            errors += "Wrong"
 
         return errors
 
@@ -252,11 +255,11 @@ class PlayerLoadouts:
         self.Loadouts.append(player)
         return ''
 
-    def RegisterPlayer(self, discordId: int, player: Player):
+    def RegisterPlayer(self, discordId: int, player: Player, allowAdvancedLoadouts: bool):
 
         errors = ""
         #print(player)
-        errors +=PlayerLoadouts.GetPlayerErrors(player)
+        errors +=PlayerLoadouts.GetPlayerErrors(player, allowAdvancedLoadouts)
         if(errors != ""): return errors
 
         if(discordId != 0): #Discord
