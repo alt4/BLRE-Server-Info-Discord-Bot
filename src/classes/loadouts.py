@@ -214,11 +214,11 @@ class PlayerLoadouts:
                                 errors += weaponKey + ' not found in ' + loadout + ' ' + loadoutKey + '!\n'
         return errors
         
-    def GetPlayerErrors(player: Player):
+    def GetPlayerErrors(player: Player, allowAdvancedLoadouts: bool):
         errors = ""
-        errors += PlayerLoadouts.GetLoadoutErrors(player.Loadout1)
-        errors += PlayerLoadouts.GetLoadoutErrors(player.Loadout2)
-        errors += PlayerLoadouts.GetLoadoutErrors(player.Loadout3)
+        errors += PlayerLoadouts.GetLoadoutErrors(player.Loadout1, allowAdvancedLoadouts)
+        errors += PlayerLoadouts.GetLoadoutErrors(player.Loadout2, allowAdvancedLoadouts)
+        errors += PlayerLoadouts.GetLoadoutErrors(player.Loadout3, allowAdvancedLoadouts)
         return errors
 
     def RemovePlayer(self, IP: str, playerName: str):
